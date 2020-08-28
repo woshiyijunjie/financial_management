@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.junjie.financial_management.mapper.GoodsMapper">
+
+    <!--获取当前学生对应得账单(这里使用连表查询)-->
+    <select id="getAllGoods" resultType="com.junjie.financial_management.entity.Goods">
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        FROM `goods` g JOIN `user` u ON u.id = g.uid
+    </select>
+    <!--获取当前用户的所有信息(这里使用连表查询)-->
+    <select id="getCurrentUserAllGoods" parameterType="java.lang.Integer" resultType="com.junjie.financial_management.entity.Goods">
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        FROM `goods` g JOIN `user` u ON u.id = g.uid WHERE g.uid = #{id}
+    </select>
+    <!--修改审核状态信息-->
+    <update id="updateGoodsStatus">
+        UPDATE goods SET goods_status = #{goodsstatus} WHERE id = #{gid}
+    </update>
+    <!--修改信息-->
+    <update id="updateGoods" parameterType="com.junjie.financial_management.entity.Goods">
+        UPDATE goods SET goods_name = #{goodsName}, goods_kind = #{goodsKind}, goods_money = #{goodsMoney},
+        goods_buy_time = #{goodsBuyTime}, goods_up_time = #{goodsUpTime} WHERE id = #{id}
+    </update>
+
+    <!--查询信息 1.物品名称 2.物品类别 3.购买时间-->
+    <select id="selectCurrentUserGoodsByNKT" resultType="com.junjie.financial_management.entity.Goods">
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        FROM `goods` g JOIN `user` u ON u.id = g.uid
+        <where>
+            <if test="uid != null and uid != ''">
+                AND uid = #{uid}
+            </if>
+            <if test="goodsname != null and goodsname != ''">
+                AND goods_name LIKE concat('%', #{goodsname, jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="goodskind != null and goodskind != ''">
+                AND goods_kind LIKE concat('%', #{goodskind, jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="time != null and time != ''">
+                AND goods_buy_time LIKE concat('%', #{time ,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 管理员查询信息 1.学生姓名 2.学生学号 3.购买时间 -->
+    <select id="selectAllGoodsByNKT" resultType="com.junjie.financial_management.entity.Goods">
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        FROM `goods` g JOIN `user` u ON u.id = g.uid
+        <where>
+            <if test="name != null and name != ''">
+                AND u.name LIKE concat('%', #{name, jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="number != null and number != ''">
+                AND u.number LIKE concat('%', #{number, jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="goodsbuytime != null and goodsbuytime != ''">
+                AND goods_buy_time LIKE concat('%', #{goodsbuytime ,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+    <!--添加一条goods信息-->
+    <insert id="addGoods" parameterType="com.junjie.financial_management.entity.Goods">
+        INSERT INTO goods (uid, bid, goods_name, goods_kind, goods_money, goods_buy_time,
+        goods_up_time, goods_status) VALUES (#{uid}, #{bid}, #{goodsName}, #{goodsKind}, #{goodsMoney},
+        #{goodsBuyTime}, #{goodsUpTime}, #{goodsStatus})
+    </insert>
+    <!--根据 id 删除信息-->
+    <delete id="deleteGoodsById" parameterType="java.lang.Integer">
+        DELETE FROM goods WHERE id = #{id}
+    </delete>
+
+</mapper>

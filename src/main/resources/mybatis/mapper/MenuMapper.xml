@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.junjie.financial_management.mapper.MenuMapper">
+
+    <select id="getMenu" parameterType="java.lang.Integer" resultType="com.junjie.financial_management.entity.Menu">
+        SELECT id, title, path FROM menu WHERE status = #{status}
+    </select>
+
+</mapper>
