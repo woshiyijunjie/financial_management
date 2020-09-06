@@ -5,7 +5,6 @@ import com.junjie.financial_management.entity.Bill;
 import java.util.List;
 
 public interface BillService {
-
     //查询所有的Bill信息
     List<Bill> getAllBill();
     //查询出当前用户的所有信息
