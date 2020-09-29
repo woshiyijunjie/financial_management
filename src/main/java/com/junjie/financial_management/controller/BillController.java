@@ -26,6 +26,7 @@ public class BillController {
         String json_res = JSON.toJSONString(pageInfo);
         return json_res;
     }
+
     //获取当前用户的所有信息
     @GetMapping("/getAllUserBill")
     public String getAllUserBill(@RequestParam("pageNum") Integer pageNum,
@@ -37,18 +38,21 @@ public class BillController {
         String json_res = JSON.toJSONString(pageInfo);
         return json_res;
     }
+
     //修改 bill 的 bill_money_status 的状态
     @PutMapping("/updateBillMoneyStatusById/{id}")
     public int updateBillMoneyStatusById(@PathVariable("id") Integer id,
                                          @RequestParam("billMoneyStatus") Integer billMoneyStatus) {
         return billService.updateBillMoneyStatusById(id, billMoneyStatus);
     }
+
     //修改 bill 的 四条信息
     @PutMapping(value = "/updateFourBillById")
     public String updateFourBillById(@RequestBody Bill bill) {
         billService.updateFourBillById(bill);
         return "SUCCESS";
     }
+
     //根据 bill_name, bill_number, bill_time 进行查询操作
     @GetMapping("/getBillByNNT")
     public String getBillByNNT(@RequestParam(value = "billname", required = false) String billname,

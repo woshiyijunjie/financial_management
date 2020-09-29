@@ -13,8 +13,8 @@ public class Bill {
     private String billBankid;//银行账户
     private String billNumber;//学号
     private double billSmoney;//应到金额
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date billTime;//报账日期
     private double billRmoney;//实到金额
     private Integer billStatus;//状态

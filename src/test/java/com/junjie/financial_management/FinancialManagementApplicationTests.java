@@ -9,15 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class FinancialManagementApplicationTests {
 
-	@Autowired
-	private GoodsService goodsService;
+    @Autowired
+    private GoodsService goodsService;
 
-	@Autowired
-	private BillService billService;
+    @Autowired
+    private BillService billService;
 
-	@Test
-	void test() {
+    @Test
+    void test() {
 
 
-	}
+    }
 }

@@ -9,7 +9,8 @@
         SELECT * FROM user
     </select>
     <!--根据 number 来查询信息-->
-    <select id="getUserByNumber" parameterType="java.lang.String" resultType="com.junjie.financial_management.entity.User">
+    <select id="getUserByNumber" parameterType="java.lang.String"
+            resultType="com.junjie.financial_management.entity.User">
         SELECT * FROM user WHERE number = #{number}
     </select>
     <!--根据 id 来查询 user 的信息-->
@@ -17,7 +18,8 @@
         SELECT * FROM user WHERE id = #{id}
     </select>
     <!--根据number和name来进行模糊查询-->
-    <select id="getUsersByNN" parameterType="com.junjie.financial_management.entity.User" resultType="com.junjie.financial_management.entity.User">
+    <select id="getUsersByNN" parameterType="com.junjie.financial_management.entity.User"
+            resultType="com.junjie.financial_management.entity.User">
         SELECT * FROM user
         <where>
             <if test="number != '' and number != null">

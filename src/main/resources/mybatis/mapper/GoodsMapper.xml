@@ -6,12 +6,15 @@
 
     <!--获取当前学生对应得账单(这里使用连表查询)-->
     <select id="getAllGoods" resultType="com.junjie.financial_management.entity.Goods">
-        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time,
+        g.goods_up_time, g.goods_status
         FROM `goods` g JOIN `user` u ON u.id = g.uid
     </select>
     <!--获取当前用户的所有信息(这里使用连表查询)-->
-    <select id="getCurrentUserAllGoods" parameterType="java.lang.Integer" resultType="com.junjie.financial_management.entity.Goods">
-        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+    <select id="getCurrentUserAllGoods" parameterType="java.lang.Integer"
+            resultType="com.junjie.financial_management.entity.Goods">
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time,
+        g.goods_up_time, g.goods_status
         FROM `goods` g JOIN `user` u ON u.id = g.uid WHERE g.uid = #{id}
     </select>
     <!--修改审核状态信息-->
@@ -26,7 +29,8 @@
 
     <!--查询信息 1.物品名称 2.物品类别 3.购买时间-->
     <select id="selectCurrentUserGoodsByNKT" resultType="com.junjie.financial_management.entity.Goods">
-        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time,
+        g.goods_up_time, g.goods_status
         FROM `goods` g JOIN `user` u ON u.id = g.uid
         <where>
             <if test="uid != null and uid != ''">
@@ -46,7 +50,8 @@
 
     <!-- 管理员查询信息 1.学生姓名 2.学生学号 3.购买时间 -->
     <select id="selectAllGoodsByNKT" resultType="com.junjie.financial_management.entity.Goods">
-        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time, g.goods_up_time, g.goods_status
+        SELECT g.id, g.uid, g.bid, u.number, u.`name`, g.goods_name, g.goods_kind, g.goods_money, g.goods_buy_time,
+        g.goods_up_time, g.goods_status
         FROM `goods` g JOIN `user` u ON u.id = g.uid
         <where>
             <if test="name != null and name != ''">

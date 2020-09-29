@@ -16,12 +16,14 @@ public interface GoodsMapper {
     //查询信息 1.物品名称 2.物品类别 3.购买时间
     List<Goods> selectCurrentUserGoodsByNKT(@Param("uid") Integer uid,
                                             @Param("goodsname") String goodsname,
-                                            @Param("goodskind")String goodskind,
+                                            @Param("goodskind") String goodskind,
                                             @Param("time") String time);
+
     //查询信息 1.学生姓名 2.学生学号 3.购买时间
     List<Goods> selectAllGoodsByNKT(@Param("name") String name,
                                     @Param("number") String number,
                                     @Param("goodsbuytime") String goodsbuytime);
+
     //修改审查状态信息
     int updateGoodsStatus(@Param("gid") Integer gid, @Param("goodsstatus") Integer goodsstatus);
 

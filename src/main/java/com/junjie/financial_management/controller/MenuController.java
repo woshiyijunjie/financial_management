@@ -19,7 +19,7 @@ public class MenuController {
 
     @GetMapping(value = "/getMenu")
     public String getMenu(@RequestParam("status") Integer id) {
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         List<?> list = menuService.getMenu(id);
         map.put("menus", list);
         String json_res = JSON.toJSONString(map);

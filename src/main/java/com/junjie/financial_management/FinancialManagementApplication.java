@@ -8,9 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(value = "com.junjie.financial_management.mapper")
 @SpringBootApplication
 public class FinancialManagementApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(FinancialManagementApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(FinancialManagementApplication.class, args);
+    }
 }

@@ -2,7 +2,7 @@ package com.junjie.financial_management.common.lang;
 
 import java.io.Serializable;
 
-public class Result implements Serializable{
+public class Result implements Serializable {
 
     private int code;//200 正常 400 数据异常
     private String msg;

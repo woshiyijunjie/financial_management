@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ShiroConfig {
 
-//    @Bean
+    //    @Bean
 //    public SessionManager sessionManager(RedisSessionDAO redisSessionDAO) {
 //        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
 //        sessionManager.setSessionDAO(redisSessionDAO);
@@ -36,13 +36,13 @@ public class ShiroConfig {
     </bean>
     */
     @Bean
-    public DefaultWebSecurityManager securityManager(){
+    public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(realm());
         return defaultWebSecurityManager;
     }
 
-//    @Bean
+    //    @Bean
 //    public SessionsSecurityManager securityManager(
 //            ShiroRealm shiroRealm, SessionManager sessionManager, RedisCacheManager redisCacheManager) {
 //        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(shiroRealm);
@@ -52,14 +52,14 @@ public class ShiroConfig {
 //    }
     //将 realm 注入spring 容器
     @Bean
-    public ShiroRealm realm(){
+    public ShiroRealm realm() {
         ShiroRealm shiroRealm = new ShiroRealm();
         shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return shiroRealm;
     }
 
     @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
         hashedCredentialsMatcher.setHashAlgorithmName("MD5");
         hashedCredentialsMatcher.setHashIterations(1024);
@@ -71,7 +71,7 @@ public class ShiroConfig {
     private FilterChainDefinitionMapBuilder mapBuilder;
 
     @Bean
-    public ShiroFilterChainDefinition filterChainDefinition(){
+    public ShiroFilterChainDefinition filterChainDefinition() {
         DefaultShiroFilterChainDefinition filterChainDefinition = new DefaultShiroFilterChainDefinition();
         //1.通过工程注入的方式，将所有的信息都注入进去
         filterChainDefinition.addPathDefinitions(mapBuilder.builder());

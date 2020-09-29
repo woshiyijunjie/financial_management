@@ -13,6 +13,9 @@ public class CrossOriginConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS")
+                .exposedHeaders("access-control-allow-headers", "access-control-allow-methods", "access-control-allow" +
+                        "-origin", "access-control-max-age", "X-Frame-Options","Authorization")
+                .allowCredentials(false)
                 .maxAge(3600 * 24);
     }
 }

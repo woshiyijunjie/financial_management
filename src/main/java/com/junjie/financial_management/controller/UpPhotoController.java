@@ -31,7 +31,7 @@ public class UpPhotoController {
     @PostMapping(value = "/upLoadPhoto")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    @RequestParam Map<String, Object> map) throws ParseException {
-        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse(map.get("time").toString());
 
         //用一个时间来标记图片
@@ -68,8 +68,8 @@ public class UpPhotoController {
 
     //修改操作(图片没有被修改的情况)
     @PostMapping(value = "/updateFourGoodsById")
-    public String updateFourGoodsById(@RequestBody Map<String,Object> map) throws ParseException {
-        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+    public String updateFourGoodsById(@RequestBody Map<String, Object> map) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         System.out.println(map.get("time").toString());
 
@@ -97,11 +97,12 @@ public class UpPhotoController {
 
         return "SUCCESS";
     }
+
     //修改操作(当图片发生修改的时候)
     @PostMapping(value = "/updateFiveGoodsById")
     public String updateFiveGoodsById(@RequestParam("file") MultipartFile file,
                                       @RequestParam Map<String, Object> map) throws ParseException {
-        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         long timestr = new Date().getTime();
         //保存图片到服务器
         this.savePhoto(file, timestr);

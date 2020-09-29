@@ -4,6 +4,8 @@ spring:
     password: 996911
     #这里新版的 jdbc ；连接的方式和驱动注册时不一样的(注意：serverTimezone=Asia/Shanghai 的时区一定要设置为中国的)
     url: jdbc:mysql://localhost:3306/financial_management?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    #阿里云端数据库
+    #url: jdbc:mysql://47.115.154.128:8880/financial_management?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     #这里可以通过配置设置数据源的类型
     type: com.alibaba.druid.pool.DruidDataSource
@@ -26,22 +28,19 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-#测试使用
+  #测试使用
   thymeleaf:
     cache: false # 关闭页面缓存
     encoding: UTF-8 # 模板编码
     prefix: classpath:/templates/  # 页面映射路径
     suffix: .html # 试图后的后缀
     mode: HTML5 # 模板模式
-#配置SpringMVC文件上传限制，默认1M。注意MB要大写，不然报错。SpringBoot版本不同，配置项不同
+  #配置SpringMVC文件上传限制，默认1M。注意MB要大写，不然报错。SpringBoot版本不同，配置项不同
   servlet:
     multipart:
       max-file-size: 2MB
       max-request-size: 2MB
 #进行 MyBatis 的相关配置（这里配好之后在文件中的配置将会被取代）
 mybatis:
-    config-location: classpath:mybatis/mybatis-config.xml
-    mapper-locations: classpath:mybatis/mapper/*.xml
-
-
-
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml

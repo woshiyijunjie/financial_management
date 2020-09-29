@@ -31,22 +31,26 @@ public class UserController {
         String json_res = JSON.toJSONString(pageInfo);
         return json_res;
     }
+
     //根据 id 来查询 User 所有信息
     @GetMapping("/getUserById")
     public User getUserById(@RequestParam("id") Integer id) {
         return userService.getUserById(id);
     }
+
     //根据 id 来修改 user 信息
     @PutMapping("/updateUserById")
     public String updateUserById(@RequestBody User user) {
         userService.updateUserById(user);
         return "SUCCESS";
     }
+
     //根据 id 来查询 user 密码信息
     @GetMapping("/selectPasswordById")
     public String selectPasswordById(@RequestParam("id") Integer id) {
         return userService.getUserById(id).getPassword();
     }
+
     //根据 id 和 name 来进行模糊查询
     @GetMapping("/getUsersByNN")
     public String getUsersByNN(@RequestParam(value = "number", required = false) String number,
@@ -57,6 +61,7 @@ public class UserController {
         user.setName(name);
         return JSON.toJSONString(userService.getUsersByNN(user));
     }
+
     //根据 id 来修改 user 的密码信息
     @PutMapping("/updateUserPasswordById")
     public int updateUserPasswordById(@RequestBody User user) {

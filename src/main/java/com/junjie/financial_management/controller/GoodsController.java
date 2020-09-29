@@ -30,6 +30,7 @@ public class GoodsController {
         String json_res = JSON.toJSONString(pageInfo);
         return json_res;
     }
+
     //查询出当前用户所有的物品信息
     @GetMapping(value = "/getCurrentUserAllGoods")
     public String getCurrentUserAllGoods(@RequestParam("pageNum") Integer pageNum,
@@ -41,14 +42,16 @@ public class GoodsController {
         String json_res = JSON.toJSONString(pageInfo);
         return json_res;
     }
+
     //根据 1.货物名 2.货物种类 3.购买时间  查询信息(普通用户)
     @GetMapping(value = "/selectCurrentUserGoodsByNKT")
     public String selectCurrentUserGoodsByNKT(@RequestParam(value = "uid") Integer uid,
-                              @RequestParam(value = "goodsname", required = false) String goodsname,
-                              @RequestParam(value = "goodskind", required = false) String goodskind,
-                              @RequestParam(value = "time" , required = false) String time){
+                                              @RequestParam(value = "goodsname", required = false) String goodsname,
+                                              @RequestParam(value = "goodskind", required = false) String goodskind,
+                                              @RequestParam(value = "time", required = false) String time) {
         return JSON.toJSONString(goodsService.selectCurrentUserGoodsByNKT(uid, goodsname, goodskind, time));
     }
+
     //查询信息 1.学生姓名 2.学生学号 3.购买时间 (管理员)
     @GetMapping(value = "/selectAllGoodsByNKT")
     public String selectBySST(@RequestParam(value = "name", required = false) String name,
@@ -56,14 +59,16 @@ public class GoodsController {
                               @RequestParam(value = "goodsbuytime", required = false) String goodsbuytime) {
         return JSON.toJSONString(goodsService.selectAllGoodsByNKT(name, number, goodsbuytime));
     }
+
     //修改审查状态信息(这里同时也要把 bill 里面的状态修改)
     @PutMapping(value = "/updateGoodsStatus/{gid}")
     public int updateGoodsStatus(@PathVariable("gid") Integer gid,
                                  @RequestParam("bid") Integer bid,
                                  @RequestParam("goodsstatus") Integer goodsstatus) {
         return goodsService.updateGoodsStatus(gid, goodsstatus)
-             + billService.updateBillStatusById(bid, goodsstatus);
+                + billService.updateBillStatusById(bid, goodsstatus);
     }
+
     //删除对应的 goods
     @DeleteMapping("/deleteGoodsById")
     public int deleteGoodsById(@RequestParam("id") Integer id, @RequestParam("bid") Integer bid) {

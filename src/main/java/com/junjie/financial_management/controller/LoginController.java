@@ -25,7 +25,7 @@ public class LoginController {
         try {
             User getUser = userService.getUserByNumber(user.getNumber());
 
-            if(getUser.getPassword().equals(user.getPassword())) {
+            if (getUser.getPassword().equals(user.getPassword())) {
                 //后面控制所需要的用户数据
                 //1.id 2.name 3.status
                 Map<String, Object> map = new HashMap<>();
@@ -33,12 +33,11 @@ public class LoginController {
                 map.put("user_name", getUser.getName());
                 map.put("user_number", getUser.getNumber());
                 map.put("user_bankid", getUser.getBankid());
-                map.put("user_status",getUser.getStatus());
-                return Result.success("登陆成功！",map);
-            }
-            else return Result.failure("用户密码错误！", null);
+                map.put("user_status", getUser.getStatus());
+                return Result.success("登陆成功！", map);
+            } else return Result.failure("用户密码错误！", null);
             //这里没有再专门去查取用户是否存在了，抛了空指针异常说明用户不存在
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             //这里还可以利用 Json 工具转化你想要发送过去的数据(数据以集合或者对象的方式)
 
             return Result.failure("用户不存在！", null);

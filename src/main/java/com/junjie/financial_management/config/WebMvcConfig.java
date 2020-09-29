@@ -11,7 +11,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        if(!registry.hasMappingForPattern("/static/**")){
+        if (!registry.hasMappingForPattern("/static/**")) {
             registry.addResourceHandler("/images/**").addResourceLocations("file:E:\\software_install_pathaddadd\\IDEAWorkSpace\\financial_management\\src\\main\\resources\\static\\images\\"); /*绝对路径*/
         }
         super.addResourceHandlers(registry);

@@ -25,7 +25,7 @@ public class ShiroHandler {
                 System.out.println(token.hashCode());
                 // 执行登录.
                 currentUser.login(token);
-            }catch (UnknownAccountException uae) {
+            } catch (UnknownAccountException uae) {
                 // 如果没用指定的账户 shiro 会抛出 UnknownAccountException 异常
 
             } catch (IncorrectCredentialsException ice) {
@@ -43,7 +43,7 @@ public class ShiroHandler {
             }
         }
 
-        System.out.println(username +":"+password);
+        System.out.println(username + ":" + password);
         return "redirect:/list";
     }
 

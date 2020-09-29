@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BillServiceImpl implements BillService{
+public class BillServiceImpl implements BillService {
 
     @Autowired
     private BillMapper billMapper;
@@ -38,6 +38,7 @@ public class BillServiceImpl implements BillService{
     public int addBill(Bill bill) {
         return billMapper.addBill(bill);
     }
+
     //根据 id 号删除 bill 的信息
     @Override
     public int deleteBillById(Integer id) {
@@ -61,6 +62,7 @@ public class BillServiceImpl implements BillService{
     public int updateBillStatusById(Integer id, Integer billStatus) {
         return billMapper.updateBillStatusById(id, billStatus);
     }
+
     //根据 id 改变 bill 的 bill_money_status 的状态
     @Override
     public int updateBillMoneyStatusById(Integer id, Integer billMoneyStatus) {
